@@ -22,10 +22,6 @@ char* getButtonName(unsigned int button, LANG* lang)
 			case PSP_CTRL_CROSS:    return "CROSS";
 			case PSP_CTRL_SQUARE:   return "SQUARE";
 			case PSP_CTRL_HOME:     return "HOME";
-			case PSP_CTRL_NOTE:     return "NOTE";
-			case PSP_CTRL_SCREEN:   return "SCREEN";
-			case PSP_CTRL_VOLUP:    return "VOLUP";
-			case PSP_CTRL_VOLDOWN:  return "VOLDOWN";
 		}
 	} else {
 		switch(button) {
@@ -43,10 +39,7 @@ char* getButtonName(unsigned int button, LANG* lang)
 			case PSP_CTRL_CROSS:    return lang->CTRL_CROSS;
 			case PSP_CTRL_SQUARE:   return lang->CTRL_SQUARE;
 			case PSP_CTRL_HOME:     return lang->CTRL_HOME;
-			case PSP_CTRL_NOTE:     return lang->CTRL_NOTE;
 			case PSP_CTRL_SCREEN:   return lang->CTRL_SCREEN;
-			case PSP_CTRL_VOLUP:    return lang->CTRL_VOLUP;
-			case PSP_CTRL_VOLDOWN:  return lang->CTRL_VOLDOWN;
 		}
 	}
 	return "UNKNOWN";
@@ -69,10 +62,6 @@ unsigned int getPrevButton(unsigned int button)
 		case PSP_CTRL_CROSS:    return PSP_CTRL_CIRCLE;
 		case PSP_CTRL_SQUARE:   return PSP_CTRL_CROSS;
 		case PSP_CTRL_HOME:     return PSP_CTRL_SQUARE;
-		case PSP_CTRL_NOTE:     return PSP_CTRL_HOME;
-		case PSP_CTRL_SCREEN:   return PSP_CTRL_NOTE;
-		case PSP_CTRL_VOLUP:    return PSP_CTRL_SCREEN;
-		case PSP_CTRL_VOLDOWN:  return PSP_CTRL_VOLUP;
 	}
 	return PSP_CTRL_SELECT;
 }
@@ -93,11 +82,6 @@ unsigned int getNextButton(unsigned int button)
 		case PSP_CTRL_CIRCLE:   return PSP_CTRL_CROSS;
 		case PSP_CTRL_CROSS:    return PSP_CTRL_SQUARE;
 		case PSP_CTRL_SQUARE:   return PSP_CTRL_HOME;
-		case PSP_CTRL_HOME:     return PSP_CTRL_NOTE;
-		case PSP_CTRL_NOTE:     return PSP_CTRL_SCREEN;
-		case PSP_CTRL_SCREEN:   return PSP_CTRL_VOLUP;
-		case PSP_CTRL_VOLUP:    return PSP_CTRL_VOLDOWN;
-		case PSP_CTRL_VOLDOWN:  return 0;
 	}
 	return PSP_CTRL_SELECT;
 }
@@ -121,10 +105,6 @@ int getButtonsPressed(SceCtrlData *pad, char *text)
 		if(buttons & PSP_CTRL_CROSS   ) strcat(text, "CROSS, "   );
 		if(buttons & PSP_CTRL_SQUARE  ) strcat(text, "SQUARE, "  );
 		if(buttons & PSP_CTRL_HOME    ) strcat(text, "HOME, "    );
-		if(buttons & PSP_CTRL_NOTE    ) strcat(text, "NOTE, "    );
-		if(buttons & PSP_CTRL_SCREEN  ) strcat(text, "SCREEN, "  );
-		if(buttons & PSP_CTRL_VOLUP   ) strcat(text, "VOLUP, "   );
-		if(buttons & PSP_CTRL_VOLDOWN ) strcat(text, "VOLDOWN, " );
 	}
 	int len = strlen(text);
 	if(len > 1) text[len-2] = 0;

@@ -19,7 +19,6 @@ typedef struct CONFIG {
 	unsigned int buttonCombo;
 	unsigned int buttonMenu;
 	unsigned int buttonHUD;
-	unsigned int buttonScreenshot;
 } CONFIG;
 
 void load(CONFIG *config);

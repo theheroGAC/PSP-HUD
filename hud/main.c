@@ -329,7 +329,7 @@ void menuNavigation()
 		} else if(showMenu == 0 && (cfg.buttonCombo != 0 || cfg.buttonHUD != 0) && (cfg.buttonCombo == 0 || (pad.Buttons & cfg.buttonCombo)) && (cfg.buttonHUD == 0 || (pad.Buttons & cfg.buttonHUD))) {
 			cfg.showHUD++;
 			if(cfg.showHUD > 2) cfg.showHUD = 0;
-		} else if(showMenu == 0 && (cfg.buttonCombo != 0 || cfg.buttonScreenshot != 0) && (cfg.buttonCombo == 0 || (pad.Buttons & cfg.buttonCombo)) && (cfg.buttonScreenshot == 0 || (pad.Buttons & cfg.buttonScreenshot))) {
+		} else if(showMenu == 0 && (cfg.buttonCombo != 0 || cfg.buttonHUD != 0) && (cfg.buttonCombo == 0 || (pad.Buttons & cfg.buttonCombo)) && (cfg.buttonHUD == 0 || (pad.Buttons & cfg.buttonHUD))) {
 			screenshot_timer = 10;
 		} else if(showMenu == 1 && (pad.Buttons & PSP_CTRL_UP)) {
 			selection--; 
@@ -419,10 +419,6 @@ void menuNavigation()
 				case 13:
 					if(pad.Buttons & PSP_CTRL_LEFT) cfg.buttonHUD = getPrevButton(cfg.buttonHUD);
 					if(pad.Buttons & PSP_CTRL_RIGHT) cfg.buttonHUD = getNextButton(cfg.buttonHUD);
-					break;
-				case 14:
-					if(pad.Buttons & PSP_CTRL_LEFT) cfg.buttonScreenshot = getPrevButton(cfg.buttonScreenshot);
-					if(pad.Buttons & PSP_CTRL_RIGHT) cfg.buttonScreenshot = getNextButton(cfg.buttonScreenshot);
 					break;
 			}
 		} else if(showMenu == 1 && infoIndex >= 0 && infoIndex < 4 && (pad.Buttons & PSP_CTRL_SQUARE)) {
@@ -642,11 +638,6 @@ void drawMenu(CANVAS *canvas)
 		drawSmallFont(canvas, text, x - strlen(lang.HUD_BUTTON)*6, y);
 		checkMenuMinimumSize();
 
-		y += 10;
-		sprintf(text, "%s: %s", lang.SCREENSHOT_BUTTON, getButtonName(cfg.buttonScreenshot, &lang));
-		if(selection == 14) fillRectangle(canvas, sel_x, y-2, sel_w, 11, SELECTION_FILL, SELECTION_BORDER);
-		drawSmallFont(canvas, text, x - strlen(lang.SCREENSHOT_BUTTON)*6, y);
-		checkMenuMinimumSize();
 
 		x -= 6;
 		y += 20;
@@ -1119,10 +1110,9 @@ int main_thread(SceSize argc, void* argp)
 	cfg.speedXMB = 0;
 	cfg.speedGAME = 0;
 	cfg.speedPOPS = 0;
-	cfg.buttonCombo = PSP_CTRL_NOTE;
+	cfg.buttonCombo = PSP_CTRL_DOWN;
 	cfg.buttonMenu = PSP_CTRL_LTRIGGER;
 	cfg.buttonHUD = PSP_CTRL_RTRIGGER;
-	cfg.buttonScreenshot = PSP_CTRL_UP;
 	// load saved options
 	load(&cfg);
 	cfg.language = loadLang(&lang, cfg.language);
